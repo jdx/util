@@ -1,9 +1,21 @@
 import * as fs from 'fs'
 
+export function uniq<T>(arr: T[]): T[] {
+  return arr.filter((a, i) => {
+    return !arr.find((b, j) => j !== i && b === a)
+  })
+}
+
 export function uniqBy<T>(arr: T[], fn: (cur: T) => any): T[] {
   return arr.filter((a, i) => {
     let aVal = fn(a)
     return !arr.find((b, j) => j !== i && fn(b) === aVal)
+  })
+}
+
+export function uniqWith<T>(arr: T[], fn: (a: T, b: T) => boolean): T[] {
+  return arr.filter((a, i) => {
+    return !arr.find((b, j) => j !== i && fn(a, b))
   })
 }
 
