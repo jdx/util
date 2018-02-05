@@ -49,17 +49,8 @@ export function maxBy<T>(arr: T[], fn: (i: T) => number): T | undefined {
   return max && max.element
 }
 
-export type SortTypes = string | number | undefined | boolean
-
-export function sortBy<T>(arr: T[], fn: (i: T) => SortTypes | SortTypes[]): T[] {
-  // function castType(t: SortTypes | SortTypes[]): string | number | SortTypes[] {
-  //   if (t === undefined) return 0
-  //   if (t === false) return 1
-  //   if (t === true) return -1
-  //   return t
-  // }
-
-  function compare(a: SortTypes | SortTypes[], b: SortTypes | SortTypes[]): number {
+export function sortBy<T>(arr: T[], fn: (i: T) => sortBy.Types | sortBy.Types[]): T[] {
+  function compare(a: sortBy.Types | sortBy.Types[], b: sortBy.Types | sortBy.Types[]): number {
     a = a === undefined ? 0 : a
     b = b === undefined ? 0 : b
 
@@ -76,6 +67,9 @@ export function sortBy<T>(arr: T[], fn: (i: T) => SortTypes | SortTypes[]): T[] 
   }
 
   return arr.sort((a, b) => compare(fn(a), fn(b)))
+}
+export namespace sortBy {
+  export type Types = string | number | undefined | boolean
 }
 
 export function castArray<T>(input?: T | T[]): T[] {
