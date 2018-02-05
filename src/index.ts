@@ -1,5 +1,12 @@
 import * as fs from 'fs'
 
+export function uniqBy<T>(arr: T[], fn: (cur: T) => any): T[] {
+  return arr.filter((a, i) => {
+    let aVal = fn(a)
+    return !arr.find((b, j) => j !== i && fn(b) === aVal)
+  })
+}
+
 export function compact<T>(a: (T | undefined)[]): T[] {
   return a.filter((a): a is T => !!a)
 }
@@ -69,4 +76,9 @@ export function sortBy<T>(arr: T[], fn: (i: T) => SortTypes | SortTypes[]): T[] 
   }
 
   return arr.sort((a, b) => compare(fn(a), fn(b)))
+}
+
+export function castArray<T>(input?: T | T[]): T[] {
+  if (input === undefined) return []
+  return Array.isArray(input) ? input : [input]
 }
