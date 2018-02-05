@@ -1,0 +1,38 @@
+{
+  "name": "@jdxcode/util",
+  "description": "utilties I use for typescript projects",
+  "version": "0.0.0",
+  "author": "Jeff Dickey @jdxcode",
+  "bugs": "https://github.com/jdxcode/util/issues",
+  "dependencies": {},
+  "devDependencies": {
+    "@anycli/tslint": "^0.2.5",
+    "@types/chai": "^4.1.2",
+    "@types/mocha": "^2.2.48",
+    "@types/node": "^9.4.0",
+    "concurrently": "^3.5.1",
+    "ts-node": "^4.1.0",
+    "typescript": "^2.7.1"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/lib"
+  ],
+  "homepage": "https://github.com/jdxcode/util",
+  "keywords": [
+    "anycli"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "repository": "jdxcode/util",
+  "scripts": {
+    "build": "rm -rf lib && tsc",
+    "lint": "concurrently -p command \"tsc -p . --noEmit\" \"tslint -p . -t stylish\"",
+    "posttest": "yarn run lint",
+    "prepublishOnly": "yarn run build",
+    "test": "echo NO TESTS"
+  },
+  "types": "lib/index.d.ts"
+}
